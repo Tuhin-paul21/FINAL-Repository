@@ -150,42 +150,50 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
-  <section class="hero-bg min-h-[120vh] flex items-center justify-between px-12 pt-20">
-    <div class="max-w-xl">
-      <h1 class="text-5xl font-extrabold text-white leading-tight mb-6">Front-End <span class="text-purple-500">Software Developer</span></h1>
-      <p class="text-gray-400 text-lg mb-8">Resolving design problems, building smart user interfaces and useful interactions, developing rich web applications and seamless web experiences.</p>
-      <a href="#about" class="btn-primary px-5 py-4 rounded-lg text-white font-semibold">About Me →</a>
-    </div>
-
-   <div class="relative hidden lg:block group overflow-hidden rounded-2xl shadow-2xl">
-  <video autoplay muted loop playsinline id="bg-video" class="rounded-2xl transform transition duration-700 group-hover:scale-110 group-hover:brightness-75">
-    <source src="WhatsAppImageatfejpg-MyVideo-Convert2video-com.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <!-- Overlay Text on Hover -->
-  <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-700">
-    <!-- <h3 class="text-3xl font-bold text-white drop-shadow-lg">Epic Gameplay</h3> -->
+       <!-- Hero Section -->
+  <section class="hero-bg min-h-screen flex flex-col lg:flex-row items-center justify-between px-6 md:px-12 pt-10 lg:pt-20 gap-10">
+  <!-- Left Content -->
+  <div class="max-w-xl text-center lg:text-left order-1 lg:order-1">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-6">
+      Front-End <span class="text-purple-500">Software Developer</span>
+    </h1>
+    <p class="text-gray-400 text-base md:text-lg mb-8">
+      Resolving design problems, building smart user interfaces and useful interactions, developing rich web applications and seamless web experiences.
+    </p>
+    <a href="#about" class="btn-primary px-5 py-4 rounded-lg text-white font-semibold bg-purple-600 hover:bg-purple-700 transition">
+      About Me →
+    </a>
   </div>
-</div>
+
+  <!-- Video Section -->
+  <div class="relative order-2 lg:order-2 w-full max-w-lg group overflow-hidden rounded-2xl shadow-2xl mt-6 lg:mt-0">
+    <video autoplay muted loop playsinline id="bg-video" class="rounded-2xl w-full h-full object-cover transform transition duration-700 group-hover:scale-110 group-hover:brightness-75">
+      <source src="WhatsAppImageatfejpg-MyVideo-Convert2video-com.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-700"></div>
+  </div>
+</section>
 
 <script>
   const videoContainer = document.querySelector('.group');
   const video = document.getElementById('bg-video');
 
-  videoContainer.addEventListener('mousemove', (e) => {
-    const { offsetWidth, offsetHeight } = videoContainer;
-    const x = (e.offsetX / offsetWidth - 0.5) * 20; // tilt range
-    const y = (e.offsetY / offsetHeight - 0.5) * 20;
+  if(videoContainer && video){
+    videoContainer.addEventListener('mousemove', (e) => {
+      const { offsetWidth, offsetHeight } = videoContainer;
+      const x = (e.offsetX / offsetWidth - 0.5) * 20;
+      const y = (e.offsetY / offsetHeight - 0.5) * 20;
+      video.style.transform = `scale(1.1) rotateX(${-y}deg) rotateY(${x}deg)`;
+    });
 
-    video.style.transform = `scale(1.1) rotateX(${-y}deg) rotateY(${x}deg)`;
-  });
-
-  videoContainer.addEventListener('mouseleave', () => {
-    video.style.transform = "scale(1) rotateX(0) rotateY(0)";
-  });
+    videoContainer.addEventListener('mouseleave', () => {
+      video.style.transform = "scale(1) rotateX(0) rotateY(0)";
+    });
+  }
 </script>
+
 
 
     </div>
