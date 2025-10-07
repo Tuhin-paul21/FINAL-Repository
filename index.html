@@ -14,6 +14,21 @@
         type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         type="text/css">
+    <script>
+        // Disable right click
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Disable key combinations that could enable right click menu
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+    </script>
     <style type="text/css">
         /* Added type="text/css" */
         body {
@@ -190,16 +205,17 @@
 <body class="antialiased">
 
     <header class="bg-gradient-to-r from-gray-900 to-gray-800 sticky top-0 z-50 border-b border-gray-700">
-        <nav class="container mx-auto px-8 py-6">
+        <nav class="container mx-auto px-8 py-4">
             <div class="flex justify-between items-center">
-                <a href="#" class="flex items-center space-x-3">
-                    <i class="fas fa-code text-blue-500 text-3xl"></i>
+                <a href="#" class="flex items-center space-x-3 group">
+                    <!-- Animated code logo -->
+                    <i
+                        class="fas fa-code text-blue-500 text-3xl transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110 group-hover:text-purple-400 animate-pulse"></i>
                     <span
-                        class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                        class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent group-hover:from-purple-500 group-hover:to-pink-500 transition-all duration-300">
                         Fram3<span class="text-white">.Gamer</span>
                     </span>
                 </a>
-
                 <div class="hidden md:flex items-center space-x-8">
                     <ul class="flex items-center space-x-8 text-sm font-medium">
                         <li>
@@ -280,7 +296,7 @@
             class="hero-bg min-h-screen flex flex-col lg:flex-row items-center justify-between px-6 md:px-12 pt-10 lg:pt-20 gap-10 bg-black mb-20">
             <!-- Left Content -->
             <div id="left-content"
-                class="max-w-xl text-center lg:text-left order-1 lg:order-1 p-8 rounded-2xl bg-black/30 backdrop-blur-sm border border-gray-700 transition transform duration-500 hover:scale-105 hover:shadow-2xl hover:border-purple-500">
+                class="max-w-xl text-center lg:text-left order-1 lg:order-1 p-8 rounded-2xl bg-black/30 backdrop-blur-sm transition transform duration-500 hover:scale-105 hover:shadow-2xl">
                 <h1
                     class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600 leading-tight mb-6 fallback-text">
                     Front-End <span class="text-white">Software Developer</span>
@@ -299,9 +315,9 @@
 
             <!-- Video Section -->
             <div
-                class="relative order-2 lg:order-2 w-full max-w-md mx-auto group overflow-hidden rounded-2xl shadow-2xl mt-6 lg:mt-0 border-2 border-transparent hover:border-purple-500 transition-all duration-300">
+                class="relative order-2 lg:order-2 w-full max-w-2xl mx-auto group overflow-hidden rounded-2xl shadow-2xl mt-6 lg:mt-0 border-2 border-transparent hover:border-purple-500 transition-all duration-300">
                 <video autoplay muted loop playsinline id="bg-video"
-                    class="rounded-2xl w-full aspect-video object-contain transform transition duration-700 group-hover:scale-110 group-hover:brightness-75">
+                    class="rounded-2xl w-full h-auto max-h-[50vh] md:max-h-[60vh] lg:max-h-[70vh] object-cover transform transition duration-700 group-hover:scale-110 group-hover:brightness-75">
                     <source src="WhatsAppImageatfejpg-MyVideo-Convert2video-com.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -362,6 +378,13 @@
                     opacity: 0.85;
                     transform: scale(1.05);
                     box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+                }
+            }
+
+            /* Responsive video adjustments */
+            @media (max-width: 768px) {
+                #bg-video {
+                    max-height: 40vh;
                 }
             }
         </style>
@@ -429,44 +452,45 @@
 
 
 
-        <section id="about" class="relative min-h-[80vh] bg-black text-white overflow-hidden mt-20">
+        <!-- About Section -->
+        <section id="about"
+            class="relative min-h-screen flex items-center justify-center bg-black text-white overflow-hidden">
             <!-- Animated gradient background -->
-            <div class="absolute inset-0 hero-blac-bg opacity-20"></div>
+            <!-- <div class="absolute inset-0 hero-animated-bg opacity-20"></div> -->
 
             <div class="relative z-10 container mx-auto grid items-center gap-8 px-4 md:grid-cols-2">
                 <!-- Gaming Video with enhanced effects -->
-                <div class="order-2 flex justify-center md:order-1 perspective-1000">
+                <div class="order-1 flex justify-center md:order-1 perspective-1000">
                     <div class="video-container relative group">
                         <video autoplay muted loop playsinline id="about-video"
-                            class="h-[350px] w-[280px] transform rounded-2xl shadow-2xl transition-all duration-500">
+                            class="h-[450px] w-[380px] transform rounded-2xl shadow-2xl transition-all duration-500">
                             <source src="about video.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
                         <div
-                            class="absolute inset-0 bg-gradient-to-t from-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- About Me Text with enhanced animations -->
-            <div class="content-container order-1 text-left md:order-2 opacity-0 translate-y-10" id="about-content">
-                <div class="group">
-                    <h2
-                        class="relative mb-4 inline-block text-4xl font-extrabold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
-                        About Me
-                        <span
-                            class="mt-3 block h-1 w-16 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 transition-all duration-500 group-hover:w-full"></span>
-                    </h2>
-                    <p
-                        class="text-lg text-justify leading-relaxed text-gray-200 transition-all duration-500 group-hover:text-pink-400 backdrop-blur-sm bg-black/30 p-4 rounded-xl border border-pink-500/20">
-                        I'm a <span class="font-bold text-pink-400">passionate gamer</span> who loves challenges and
-                        sharing epic gaming moments. My journey also includes <span
-                            class="font-bold text-purple-400">development and design</span>, and this portfolio
-                        reflects a mix of creativity, passion, and innovation.
-                    </p>
+                <!-- About Me Text with enhanced animations -->
+                <div class="content-container order-2 text-left md:order-2 opacity-0 translate-y-10" id="about-content">
+                    <div class="group">
+                        <h2
+                            class="relative mb-4 inline-block text-4xl font-extrabold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">
+                            About Me
+                            <span
+                                class="mt-3 block h-1 w-16 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 transition-all duration-500 group-hover:w-full"></span>
+                        </h2>
+                        <p
+                            class="text-lg text-justify leading-relaxed text-gray-200 transition-all duration-500 group-hover:text-pink-400 backdrop-blur-sm bg-black/30 p-4 rounded-xl border border-pink-500/20">
+                            I'm a <span class="font-bold text-pink-400">passionate gamer</span> who loves challenges and
+                            sharing epic gaming moments. My journey also includes <span
+                                class="font-bold text-purple-400">development and design</span>, and this portfolio
+                            reflects a mix of creativity, passion, and innovation.
+                        </p>
+                    </div>
                 </div>
-            </div>
             </div>
         </section>
 
